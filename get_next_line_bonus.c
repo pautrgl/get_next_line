@@ -6,7 +6,7 @@
 /*   By: ptrapero <ptrapero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:41:32 by ptrapero          #+#    #+#             */
-/*   Updated: 2024/11/11 00:37:36 by ptrapero         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:58:40 by ptrapero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ char	*get_next_line(int fd)
 	static char	*buffer[NUM_FD];
 	char		*line_read;
 
-	if (fd < 0 || fd <= NUM_FD || BUFFER_SIZE < 1)
+	if (fd < 0 || fd >= NUM_FD || BUFFER_SIZE < 1)
 		return (NULL);
 	buffer[fd] = ft_buff_read(fd, buffer[fd]);
-	if (!buffer)
+	if (!buffer[fd])
 		return (NULL);
 	line_read = ft_return_line(buffer[fd]);
 	if (line_read[0] == '\0')
@@ -98,6 +98,15 @@ char	*get_next_line(int fd)
 // 	char	*text;
 
 // 	fd = open("prueba.txt", O_RDONLY);
+// 	text = get_next_line(fd);
+// 	while (text)
+// 	{
+// 		printf("%s", text);
+// 		free(text);
+// 		text = get_next_line(fd);
+// 	}
+// 	close(fd);
+// 	fd = open("patatasfritas.txt", O_RDONLY);
 // 	text = get_next_line(fd);
 // 	while (text)
 // 	{
